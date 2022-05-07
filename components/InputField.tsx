@@ -1,31 +1,11 @@
-import React, { useState, useRef, RefObject } from 'react';
-import MagnifyingGlass from '../icons/MagnifyingGlass';
-import CmdK from '../icons/CmdK';
+import React, { useRef, RefObject } from 'react';
+import useValidators from '../hooks/useValidators';
+import MagnifyingGlass from './icons/MagnifyingGlass';
+import CmdK from './icons/CmdK';
 
 export default function InputField(): JSX.Element {
   const inputRef: RefObject<HTMLInputElement> = useRef(null);
-  const [validators, setValidators] = useState('');
-
-  function sanitizeUserInput(input: string): string {
-    return input.replace(/[^0-9\s,]/g, '');
-  }
-  function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
-    evt.preventDefault();
-    const sanitized = sanitizeUserInput(evt.currentTarget.value);
-    setValidators(sanitized);
-  }
-  function handleSubmit(evt: React.SyntheticEvent) {
-    evt.preventDefault();
-    if (validators == '') return;
-
-    const finalSanitized = validators
-      .replace(/[^0-9,]/g, '')
-      .split(',')
-      .map((x) => parseInt(x))
-      .filter((x) => !!x)
-      .sort((a, b) => a - b);
-    alert(finalSanitized);
-  }
+  const { validators, handleChange, handleSubmit } = useValidators();
 
   return (
     <form className='w-full' onSubmit={handleSubmit}>
@@ -36,7 +16,7 @@ export default function InputField(): JSX.Element {
         >
           Validator Indicies
         </label>
-        <div className='max-w-1/2 relative mt-1 flex items-center'>
+        <div className='max-w-1/2 relative mt-1 flex select-none items-center'>
           <input
             required
             ref={inputRef}
