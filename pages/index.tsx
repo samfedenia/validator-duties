@@ -2,11 +2,11 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Header from '../components/Header';
 import ToggleDarkMode from '../components/theme/ToggleDarkMode';
-import InputField from '../components/input/InputField';
-
+import InputField from '../components/InputField';
+import { Footer } from '../components/Footer';
 const Home: NextPage = () => {
   return (
-    <div className='bg-inherit w-screen h-screen flex flex-col justify-start items-center space-y-4'>
+    <div className='flex h-screen w-screen flex-col items-center justify-start space-y-4 bg-inherit'>
       <Head>
         <title>Validator Duties</title>
       </Head>
@@ -17,6 +17,7 @@ const Home: NextPage = () => {
       />
 
       <InputField />
+      <Footer text={'0xabcd....'} />
     </div>
   );
 };
