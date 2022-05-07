@@ -3,18 +3,15 @@ type Props = {
   subtitle?: string;
 };
 
-// title: Ethereum Validator Duties
-// subtitle: View upcoming attestations and block proposals
-
-export default function Header({ title, subtitle }: Props) {
+export default function Header({ title, subtitle }: Props): JSX.Element {
   return (
     <div className='bg-inherit pt-12 sm:pt-16'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='max-w-4xl mx-auto text-center'>
-          <h2 className='text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl'>
+      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+        <div className='mx-auto max-w-4xl text-center'>
+          <h2 className='select-none text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl'>
             {title}
           </h2>
-          {subtitle && <p className='mt-3 text-xl text-gray-500 sm:mt-4'>{subtitle}</p>}
+          {subtitle && <p className='mt-3 select-none text-xl text-gray-500 sm:mt-4'>{subtitle}</p>}
         </div>
       </div>
     </div>
